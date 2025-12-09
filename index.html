@@ -84,12 +84,9 @@
     z-index: 10;
   }
 
-  .bottle-container {
-    perspective: 1000px;
-    margin: 3rem 0;
-  }
+  .bottle-container { perspective: 1000px; margin: 3rem 0; }
 
-  /* CSS 画漂流瓶 */
+  /* 漂流瓶动画 */
   .bottle {
     width: 180px;
     height: 320px;
@@ -140,15 +137,8 @@
     transform: rotate(15deg);
     animation: paper 4s ease-in-out infinite alternate;
   }
-
-  @keyframes float {
-    0%,100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-30px) rotate(5deg); }
-  }
-  @keyframes paper {
-    0% { transform: rotate(10deg) translateX(0); }
-    100% { transform: rotate(20deg) translateX(10px); }
-  }
+  @keyframes float { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-30px) rotate(5deg); } }
+  @keyframes paper { 0% { transform: rotate(10deg) translateX(0); } 100% { transform: rotate(20deg) translateX(10px); } }
 
   /* 抄网图标 */
   .net {
@@ -157,35 +147,11 @@
     position: relative;
     margin: 4rem 0;
   }
-  .net-pole {
-    width: 12px;
-    height: 280px;
-    background: linear-gradient(to top, #8b4513, #d2691e);
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 6px;
-  }
-  .net-ring {
-    width: 220px;
-    height: 220px;
-    border: 16px solid var(--accent);
-    border-radius: 50%;
-    position: absolute;
-    top: 20px;
-    left: 40px;
-    opacity: 0.8;
-  }
-  .net-mesh {
-    width: 180px;
-    height: 180px;
-    background: repeating-conic-gradient(from 0deg at 50% 50%, var(--sea) 0deg 15deg, transparent 15deg 30deg);
-    border-radius: 50%;
-    position: absolute;
-    top: 40px;
-    left: 60px;
-  }
+  .net-pole { width: 12px; height: 280px; background: linear-gradient(to top, #8b4513, #d2691e); position: absolute; left: 50%; transform: translateX(-50%); border-radius: 6px; }
+  .net-ring { width: 220px; height: 220px; border: 16px solid var(--accent); border-radius: 50%; position: absolute; top: 20px; left: 40px; opacity: 0.8; }
+  .net-mesh { width: 180px; height: 180px; background: repeating-conic-gradient(from 0deg at 50% 50%, var(--sea) 0deg 15deg, transparent 15deg 30deg); border-radius: 50%; position: absolute; top: 40px; left: 60px; }
 
+  /* 信息面板 */
   .info {
     max-width: 800px;
     text-align: center;
@@ -197,18 +163,13 @@
     backdrop-filter: blur(10px);
     border: 1px solid var(--accent);
   }
-
-  .token {
-    margin-top: 3rem;
-    font-size: 2rem;
-    color: var(--gold);
-    text-shadow: 0 0 20px var(--gold);
-  }
+  .info strong { color: var(--accent); }
+  .token { margin-top: 1rem; font-size: 2rem; color: var(--gold); text-shadow: 0 0 20px var(--gold); }
 
   .buttons {
     margin-top: 3rem;
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
     flex-wrap: wrap;
     justify-content: center;
   }
@@ -230,16 +191,7 @@
     transform: scale(1.05);
   }
 
-  footer {
-    padding: 2rem;
-    text-align: center;
-    color: var(--light);
-    opacity: 0.7;
-    font-size: 0.9rem;
-    z-index: 10;
-  }
-
-  }
+  footer { padding: 2rem; text-align: center; color: var(--light); opacity: 0.7; font-size: 0.9rem; z-index: 10; }
 
 </style>
 </head>
@@ -273,16 +225,17 @@
 
     <div class="info">
       <p>HandNet 是基于 Telegram 的匿名漂流瓶社区</p>
-      <p>在这里，你可以把秘密、心愿、段子、照片…全部塞进漂流瓶，抛向大海</p>
-      <p>也有人会举着 <strong style="color:var(--accent)">抄网</strong> 把你的瓶子捞起来</p>
-      <p>社区原生通证：<span class="token">HNET</span></p>
-      <p>持有 HNET 可获得更多抛瓶次数加成、专属身份组、抄网优先权等特权</p>
+      <p>你可以把秘密、心愿、段子、照片…全部塞进漂流瓶，抛向大海</p>
+      <p>有人会举着 <strong>抄网</strong> 把你的瓶子捞起来</p>
+      <p>💎 <strong>抄网奖励：</strong>当你的瓶子被捞起，你会获得 HNET 通证奖励</p>
+      <p>💰 <strong>交易所价值：</strong>捞瓶得到的 HNET 可以在支持交易的交易所出售赚钱</p>
+      <p>社区原生通证：<span class="token">HNET</span>，持有可获得更多抛瓶次数、专属身份组、抄网优先权等特权</p>
     </div>
 
     <div class="buttons">
       <a href="https://t.me/zhenxinhuabot" class="btn" target="_blank">立即丢漂流瓶</a>
       <a href="https://t.me/piaoliuping_pro" class="btn" target="_blank">加入社区</a>
-      <a href="#token" class="btn">查看 HNET 合约</a>
+      <a href="#0xF5152B56fa2fF300Fa1531105F79AFe08fE9140c" class="btn">查看 HNET 合约</a>
     </div>
   </main>
 
