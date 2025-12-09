@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>HandNet.tech - 抄网捞漂流瓶，HNET 社区</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root {
+    --bg: #0b132b;
+    --sea: #1c2541;
+    --wave: #3a506b;
+    --accent: #5bc0be;
+    --light: #e0f7fa;
+    --gold: #ffd60a;
+  }
+  
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--light);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+
+  /* 波浪背景 */
+  .waves {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30vh;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .wave {
+    position: absolute;
+    bottom: 0;
+    width: 200%;
+    height: 100%;
+    background: var(--wave);
+    opacity: 0.6;
+    animation: wave 12s linear infinite;
+  }
+  .wave:nth-child(2) {
+    opacity: 0.4;
+    animation-duration: 18s;
+    animation-direction: reverse;
+  }
+  @keyframes wave {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  header {
+    padding: 2rem 5%;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+  }
+  .logo {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: var(--accent);
+    text-shadow: 0 0 20px var(--accent);
+  }
+  .slogan {
+    margin-top: 0.5rem;
+    font-size: 1.3rem;
+    color: var(--light);
+    opacity: 0.9;
+  }
+
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 5%;
+    position: relative;
+    z-index: 10;
+  }
+
+  .bottle-container {
+    perspective: 1000px;
+    margin: 3rem 0;
+  }
+
+  /* CSS 画漂流瓶 */
+  .bottle {
+    width: 180px;
+    height: 320px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: float 8s ease-in-out infinite;
+  }
+  .bottle-body {
+    width: 120px;
+    height: 240px;
+    background: linear-gradient(180deg, #ffffff33, #5bc0be88);
+    border-radius: 60px 60px 20px 20px;
+    position: absolute;
+    left: 30px;
+    top: 40px;
+    border: 4px solid rgba(255,255,255,0.4);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  }
+  .bottle-neck {
+    width: 60px;
+    height: 80px;
+    background: linear-gradient(180deg, #5bc0be, #3a506b);
+    position: absolute;
+    top: 0;
+    left: 60px;
+    border-radius: 30px 30px 0 0;
+    border: 4px solid rgba(255,255,255,0.4);
+  }
+  .cork {
+    width: 50px;
+    height: 30px;
+    background: #8b4513;
+    border-radius: 25px;
+    position: absolute;
+    top: -15px;
+    left: 65px;
+    z-index: 2;
+  }
+  .paper {
+    width: 80px;
+    height: 100px;
+    background: #fffbe6;
+    position: absolute;
+    top: 100px;
+    left: 50px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transform: rotate(15deg);
+    animation: paper 4s ease-in-out infinite alternate;
+  }
+
+  @keyframes float {
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(5deg); }
+  }
+  @keyframes paper {
+    0% { transform: rotate(10deg) translateX(0); }
+    100% { transform: rotate(20deg) translateX(10px); }
+  }
+
+  /* 抄网图标 */
+  .net {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    margin: 4rem 0;
+  }
+  .net-pole {
+    width: 12px;
+    height: 280px;
+    background: linear-gradient(to top, #8b4513, #d2691e);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 6px;
+  }
+  .net-ring {
+    width: 220px;
+    height: 220px;
+    border: 16px solid var(--accent);
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    opacity: 0.8;
+  }
+  .net-mesh {
+    width: 180px;
+    height: 180px;
+    background: repeating-conic-gradient(from 0deg at 50% 50%, var(--sea) 0deg 15deg, transparent 15deg 30deg);
+    border-radius: 50%;
+    position: absolute;
+    top: 40px;
+    left: 60px;
+  }
+
+  .info {
+    max-width: 800px;
+    text-align: center;
+    line-height: 2;
+    font-size: 1.2rem;
+    background: rgba(28,37,65,0.6);
+    padding: 2rem;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--accent);
+  }
+
+  .token {
+    margin-top: 3rem;
+    font-size: 2rem;
+    color: var(--gold);
+    text-shadow: 0 0 20px var(--gold);
+  }
+
+  .buttons {
+    margin-top: 3rem;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .btn {
+    padding: 1rem 2.5rem;
+    background: transparent;
+    color: var(--accent);
+    border: 2px solid var(--accent);
+    border-radius: 50px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.4s;
+    text-decoration: none;
+  }
+  .btn:hover {
+    background: var(--accent);
+    color: var(--bg);
+    box-shadow: 0 0 30px var(--accent);
+    transform: scale(1.05);
+  }
+
+  footer {
+    padding: 2rem;
+    text-align: center;
+    color: var(--light);
+    opacity: 0.7;
+    font-size: 0.9rem;
+    z-index: 10;
+  }
+
+  }
+
+</style>
+</head>
+<body>
+
+  <div class="waves">
+    <div class="wave"></div>
+    <div class="wave"></div>
+  </div>
+
+  <header>
+    <h1 class="logo">HandNet.tech</h1>
+    <p class="slogan">用抄网捞起全网最珍贵的漂流瓶</p>
+  </header>
+
+  <main>
+    <div class="bottle-container">
+      <div class="bottle">
+        <div class="bottle-neck"></div>
+        <div class="cork"></div>
+        <div class="bottle-body"></div>
+        <div class="paper"></div>
+      </div>
+    </div>
+
+    <div class="net">
+      <div class="net-pole"></div>
+      <div class="net-ring"></div>
+      <div class="net-mesh"></div>
+    </div>
+
+    <div class="info">
+      <p>HandNet 是基于 Telegram 的匿名漂流瓶社区</p>
+      <p>在这里，你可以把秘密、心愿、段子、照片…全部塞进漂流瓶，抛向大海</p>
+      <p>也有人会举着 <strong style="color:var(--accent)">抄网</strong> 把你的瓶子捞起来</p>
+      <p>社区原生通证：<span class="token">HNET</span></p>
+      <p>持有 HNET 可获得更多抛瓶次数加成、专属身份组、抄网优先权等特权</p>
+    </div>
+
+    <div class="buttons">
+      <a href="https://t.me/zhenxinhuabot" class="btn" target="_blank">立即丢漂流瓶</a>
+      <a href="https://t.me/piaoliuping_pro" class="btn" target="_blank">加入社区</a>
+      <a href="#token" class="btn">查看 HNET 合约</a>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 HandNet.tech - 抄网捞瓶，链上海底的秘密
+  </footer>
+
+</body>
+</html>
