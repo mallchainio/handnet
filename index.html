@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>HandNet.tech - 抄网捞漂流瓶，HNET 社区</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
   :root {
     --bg: #0b132b;
@@ -13,7 +14,7 @@
     --light: #e0f7fa;
     --gold: #ffd60a;
   }
-  
+
   * { margin:0; padding:0; box-sizing:border-box; }
   body {
     font-family: "Microsoft YaHei", sans-serif;
@@ -137,8 +138,14 @@
     transform: rotate(15deg);
     animation: paper 4s ease-in-out infinite alternate;
   }
-  @keyframes float { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-30px) rotate(5deg); } }
-  @keyframes paper { 0% { transform: rotate(10deg) translateX(0); } 100% { transform: rotate(20deg) translateX(10px); } }
+  @keyframes float { 
+    0%,100% { transform: translateY(0) rotate(0deg); } 
+    50% { transform: translateY(-30px) rotate(5deg); } 
+  }
+  @keyframes paper { 
+    0% { transform: rotate(10deg) translateX(0); } 
+    100% { transform: rotate(20deg) translateX(10px); } 
+  }
 
   /* 抄网图标 */
   .net {
@@ -193,8 +200,40 @@
 
   footer { padding: 2rem; text-align: center; color: var(--light); opacity: 0.7; font-size: 0.9rem; z-index: 10; }
 
+  /* 弹层样式 */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
+  }
+
+  .modal-content {
+    background: #1c2541;
+    border: 1px solid var(--accent);
+    padding: 2rem;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    margin: 10% auto;
+    color: var(--light);
+    text-align: center;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+  }
+
+  .close {
+    float: right;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--accent);
+  }
+  .close:hover { color: var(--gold); }
 </style>
 </head>
+
 <body>
 
   <div class="waves">
@@ -235,13 +274,39 @@
     <div class="buttons">
       <a href="https://t.me/zhenxinhuabot" class="btn" target="_blank">立即丢漂流瓶</a>
       <a href="https://t.me/piaoliuping_pro" class="btn" target="_blank">加入社区</a>
-      <a href="#0xF5152B56fa2fF300Fa1531105F79AFe08fE9140c" class="btn">查看 HNET 合约</a>
+
+      <!-- 触发弹层的按钮 -->
+      <button class="btn" id="openModal">查看 HNET 合约</button>
     </div>
   </main>
 
   <footer>
     © 2025 HandNet.tech - 抄网捞瓶，链上海底的秘密
   </footer>
+
+  <!-- 弹层 HTML -->
+  <div id="contractModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>HNET 合约地址</h2>
+      <p style="margin-top:1rem; font-size:1.2rem; word-break:break-all;">
+        0xF5152B56fa2fF300Fa1531105F79AFe08fE9140c
+      </p>
+    </div>
+  </div>
+
+<script>
+  const modal = document.getElementById("contractModal");
+  const btn = document.getElementById("openModal");
+  const close = document.querySelector(".modal .close");
+
+  btn.onclick = () => modal.style.display = "block";
+  close.onclick = () => modal.style.display = "none";
+
+  window.onclick = (e) => {
+    if (e.target === modal) modal.style.display = "none";
+  };
+</script>
 
 </body>
 </html>
