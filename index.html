@@ -180,6 +180,7 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+
   .btn {
     padding: 1rem 2.5rem;
     background: transparent;
@@ -190,12 +191,25 @@
     cursor: pointer;
     transition: all 0.4s;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
   .btn:hover {
     background: var(--accent);
     color: var(--bg);
     box-shadow: 0 0 30px var(--accent);
     transform: scale(1.05);
+  }
+
+  .x-icon {
+    width: 22px;
+    height: 22px;
+    fill: var(--accent);
+    transition: 0.4s;
+  }
+  .btn:hover .x-icon {
+    fill: var(--bg);
   }
 
   footer { padding: 2rem; text-align: center; color: var(--light); opacity: 0.7; font-size: 0.9rem; z-index: 10; }
@@ -275,7 +289,14 @@
       <a href="https://t.me/zhenxinhuabot" class="btn" target="_blank">立即丢漂流瓶</a>
       <a href="https://t.me/piaoliuping_pro" class="btn" target="_blank">加入社区</a>
 
-      <!-- 触发弹层的按钮 -->
+      <!-- 新增 X 按钮（含 SVG 图标） -->
+      <a href="https://x.com/HNet_Token" class="btn" target="_blank">
+        <svg class="x-icon" viewBox="0 0 24 24">
+          <path d="M18.244 2H21.5l-7.52 8.57L23 22h-6.843l-5.362-7.027L4.9 22H1.64l8.1-9.23L1 2h6.91l4.713 6.313L18.244 2zm-1.07 17.51h1.86L7.12 4.39H5.17l12.004 15.12z"/>
+        </svg>
+        关注我们
+      </a>
+
       <button class="btn" id="openModal">查看 HNET 合约</button>
     </div>
   </main>
